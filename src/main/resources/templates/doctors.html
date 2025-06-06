@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Doctors</title>
+</head>
+<body>
+<h2>Register Doctor</h2>
+<form method="post" th:action="@{/doctors}">
+    Name: <input type="text" name="name"/><br/>
+    Specialty: <input type="text" name="specialty"/><br/>
+    Contact: <input type="text" name="contact"/><br/>
+    <button type="submit">Register</button>
+</form>
+
+<h3>All Doctors</h3>
+<ul>
+    <li th:each="doc : ${doctors}" th:text="${doc.name} + ' - ' + ${doc.specialty}"/>
+</ul>
+<a th:href="@{/}">Back</a>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hospital Management</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f9f9f9; }
+        a { display: block; margin: 10px 0; text-decoration: none; color: blue; }
+    </style>
+</head>
+<body>
+<h1>Welcome to Hospital Management System</h1>
+<a th:href="@{/patients}">Manage Patients</a>
+<a th:href="@{/doctors}">Manage Doctors</a>
+<a th:href="@{/appointments}">Schedule Appointments</a>
+</body>
+</html>

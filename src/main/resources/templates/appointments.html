@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Appointments</title>
+</head>
+<body>
+<h2>Schedule Appointment</h2>
+<form method="post" th:action="@{/appointments}" th:object="${appointment}">
+    Patient:
+    <select th:field="*{patient.id}">
+        <option th:each="p : ${patients}" th:value="${p.id}" th:text="${p.name}"/>
+    </select><br/>
+
+    Doctor:
+    <select th:field="*{doctor.id}">
+        <option th:each="d : ${doctors}" th:value="${d.id}" th:text="${d.name}"/>
+    </select><br/>
+
+    Date: <input type="text" th:field="*{date}" placeholder="YYYY-MM-DD"/><br/>
+    Time: <input type="text" th:field="*{time}" placeholder="HH:MM"/><br/>
+    <button type="submit">Schedule</button>
+</form>
+
+<h3>Appointments List</h3>
+<ul>
+    <li th:each="a : ${appointments}" th:text="${a.patient.name} + ' with ' + ${a.doctor.name} + ' on ' + ${a.date} + ' at ' + ${a.time}"/>
+</ul>
+<a th:href="@{/}">Back</a>
+</body>
+</html>
