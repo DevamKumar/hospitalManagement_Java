@@ -1,7 +1,6 @@
 package com.HospitalManagementSystem.hospital_management.controller;
 
 import com.HospitalManagementSystem.hospital_management.entity.DoctorEntity;
-import com.HospitalManagementSystem.hospital_management.repository.DoctorRepository;
 import com.HospitalManagementSystem.hospital_management.service.DoctorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

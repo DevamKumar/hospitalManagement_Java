@@ -10,13 +10,14 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class PatientService {
+
     private final PatientRepository patientRepository;
 
-    public List<PatientEntity> getAllPatients(){
-        return patientRepository.findAll();
+    public List<PatientEntity> getAllPatients() {
+        return patientRepository.getAllCustomPatients();
     }
 
-    public PatientEntity savePatient(PatientEntity patient){
-        return patientRepository.save(patient);
+    public PatientEntity savePatient(PatientEntity patient) {
+        return patientRepository.saveCustomPatient(patient);
     }
 }

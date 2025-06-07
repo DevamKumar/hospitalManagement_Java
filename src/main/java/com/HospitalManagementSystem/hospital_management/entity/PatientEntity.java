@@ -1,5 +1,6 @@
 package com.HospitalManagementSystem.hospital_management.entity;
 
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "patients")
 
 public class PatientEntity {
 
