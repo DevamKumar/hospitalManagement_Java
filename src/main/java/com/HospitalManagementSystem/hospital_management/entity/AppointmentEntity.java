@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -26,7 +29,7 @@ public class AppointmentEntity {
     @JoinColumn(name = "doctor_id")
     private DoctorEntity doctor;
 
-    private String date;
-    private String time;
+    private LocalDate date;
+    private LocalTime time;
 
 }

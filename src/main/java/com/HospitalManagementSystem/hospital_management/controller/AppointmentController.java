@@ -23,12 +23,13 @@ public class AppointmentController {
 
     @GetMapping
     public String appointments(Model model){
-        model.addAttribute("appointmentsList", appointmentRepository.findAll());
+        model.addAttribute("appointments", appointmentRepository.findAll());
         model.addAttribute("patients", patientRepository.findAll());
         model.addAttribute("doctors", doctorRepository.findAll());
-        model.addAttribute("appointments", new AppointmentEntity());
+        model.addAttribute("appointment", new AppointmentEntity());
         return "appointments";
     }
+
     @PostMapping
     public String addAppointment(@ModelAttribute AppointmentEntity appointment){
         appointmentRepository.save(appointment);

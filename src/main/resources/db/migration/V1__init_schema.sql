@@ -1,20 +1,21 @@
-CREATE TABLE patients (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    age INT,
+CREATE TABLE patient_entity (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    age INT NOT NULL,
     contact VARCHAR(20)
 );
 
-CREATE TABLE doctors (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    specialty VARCHAR(100),
+CREATE TABLE doctor_entity (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    speciality VARCHAR(255) NOT NULL,
     contact VARCHAR(20)
 );
-CREATE TABLE appointments (
-    id SERIAL PRIMARY KEY,
-    patient_id INT REFERENCES patients(id),
-    doctor_id INT REFERENCES doctors(id),
+
+CREATE TABLE appointment_entity (
+    id BIGSERIAL PRIMARY KEY,
+    patient_id BIGINT REFERENCES patient_entity(id),
+    doctor_id BIGINT REFERENCES doctor_entity(id),
     date DATE NOT NULL,
     time TIME NOT NULL
 );

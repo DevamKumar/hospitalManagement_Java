@@ -2,15 +2,35 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Hospital Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: Arial; padding: 20px; background: #f9f9f9; }
-        a { display: block; margin: 10px 0; text-decoration: none; color: blue; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('https://placehold.co/1920x1080/C6E3F2/0E1D31?text=Hospital+Background'); /* Placeholder image */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            color: #333;
+        }
     </style>
 </head>
-<body>
-<h1>Welcome to Hospital Management System</h1>
-<a th:href="@{/patients}">Manage Patients</a>
-<a th:href="@{/doctors}">Manage Doctors</a>
-<a th:href="@{/appointments}">Schedule Appointments</a>
+<body class="antialiased">
+<div class="bg-white bg-opacity-90 p-8 rounded-lg shadow-xl text-center max-w-lg w-full">
+    <h1 class="text-4xl font-bold text-indigo-800 mb-6">Welcome to Hospital Management System</h1>
+    <div class="space-y-4">
+        <a th:href="@{/patients}" class="block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-md transition duration-300 ease-in-out transform hover:scale-105">Manage Patients</a>
+        <a th:href="@{/doctors}" class="block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-md transition duration-300 ease-in-out transform hover:scale-105">Manage Doctors</a>
+        <a th:href="@{/appointments}" class="block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-md transition duration-300 ease-in-out transform hover:scale-105">Schedule Appointments</a>
+    </div>
+</div>
 </body>
 </html>

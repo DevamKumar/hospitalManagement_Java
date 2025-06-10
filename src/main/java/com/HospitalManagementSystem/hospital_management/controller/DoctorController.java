@@ -20,6 +20,7 @@ public class DoctorController {
     @GetMapping
     public String doctors(Model model){
         model.addAttribute("doctors", doctorService.getAllDoctors());
+        model.addAttribute("doctor", new DoctorEntity());
         return "doctors";
     }
 

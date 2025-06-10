@@ -2,20 +2,59 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Patients</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('https://placehold.co/1920x1080/E6F6FF/2B3E50?text=Patient+Care'); /* Placeholder image */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            color: #333;
+        }
+    </style>
 </head>
-<body>
-<h2>Register Patient</h2>
-<form method="post" th:action="@{/patients}">
-    Name: <input type="text" name="name"/><br/>
-    Age: <input type="number" name="age"/><br/>
-    Contact: <input type="text" name="contact"/><br/>
-    <button type="submit">Register</button>
-</form>
+<body class="antialiased">
+<div class="bg-white bg-opacity-90 p-8 rounded-lg shadow-xl max-w-xl w-full">
+    <h2 class="text-3xl font-bold text-center text-emerald-800 mb-6">Register Patient</h2>
+    <form method="post" th:action="@{/patients}" class="space-y-4">
+        <div>
+            <label for="patientName" class="block text-gray-700 text-sm font-medium mb-1">Name:</label>
+            <input type="text" id="patientName" name="name" class="w-full p-2 border border-gray-300 rounded-md focus:ring-emerald-500 focus:border-emerald-500"/>
+        </div>
 
-<h3>All Patients</h3>
-<ul>
-    <li th:each="patient : ${patients}" th:text="${patient.name} + ' (' + ${patient.age} + ')'"/>
-</ul>
-<a th:href="@{/}">Back</a>
+        <div>
+            <label for="patientAge" class="block text-gray-700 text-sm font-medium mb-1">Age:</label>
+            <input type="number" id="patientAge" name="age" class="w-full p-2 border border-gray-300 rounded-md focus:ring-emerald-500 focus:border-emerald-500"/>
+        </div>
+
+        <div>
+            <label for="patientContact" class="block text-gray-700 text-sm font-medium mb-1">Contact:</label>
+            <input type="text" id="patientContact" name="contact" class="w-full p-2 border border-gray-300 rounded-md focus:ring-emerald-500 focus:border-emerald-500"/>
+        </div>
+
+        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:scale-105">Register Patient</button>
+    </form>
+
+    <h3 class="text-2xl font-bold text-emerald-700 mt-8 mb-4">All Patients</h3>
+    <div class="bg-emerald-50 p-4 rounded-md shadow-inner">
+        <ul class="space-y-2">
+            <li th:each="patient : ${patients}" class="bg-emerald-100 p-3 rounded-md shadow-sm">
+                <span class="font-medium" th:text="${patient.name}"></span> (<span th:text="${patient.age}"></span>)
+            </li>
+            <li th:if="${#lists.isEmpty(patients)}" class="text-center text-gray-500 italic">No patients registered yet.</li>
+        </ul>
+    </div>
+    <a th:href="@{/}" class="mt-8 text-emerald-600 hover:text-emerald-800 font-medium text-center block transition duration-300 ease-in-out">Back to Home</a>
+</div>
 </body>
 </html>

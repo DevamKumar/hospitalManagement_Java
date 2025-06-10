@@ -1,30 +1,91 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
 <head>
+    <meta charset="UTF-8">
     <title>Appointments</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('https://placehold.co/1920x1080/E0F2F7/2C3E50?text=Healthcare+Background');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            color: #333;
+        }
+    </style>
 </head>
-<body>
-<h2>Schedule Appointment</h2>
-<form method="post" th:action="@{/appointments}" th:object="${appointment}">
-    Patient:
-    <select th:field="*{patient.id}">
-        <option th:each="p : ${patients}" th:value="${p.id}" th:text="${p.name}"/>
-    </select><br/>
 
-    Doctor:
-    <select th:field="*{doctor.id}">
-        <option th:each="d : ${doctors}" th:value="${d.id}" th:text="${d.name}"/>
-    </select><br/>
+<body class="antialiased">
+<div class="bg-white bg-opacity-90 p-8 rounded-lg shadow-xl max-w-2xl w-full">
+    <h2 class="text-3xl font-bold text-center text-blue-800 mb-6">Schedule Appointment</h2>
+    <form method="post" th:action="@{/appointments}" th:object="${appointment}" class="space-y-4">
+        <div>
+            <label for="patientSelect" class="block text-gray-700 text-sm font-medium mb-1">Patient:</label>
+            <select id="patientSelect" th:field="*{patient.id}"
+                    class="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                <option value="">-- Select Patient --</option>
+                <option th:each="p : ${patients}" th:value="${p.id}" th:text="${p.name}"></option>
+            </select>
+        </div>
 
-    Date: <input type="text" th:field="*{date}" placeholder="YYYY-MM-DD"/><br/>
-    Time: <input type="text" th:field="*{time}" placeholder="HH:MM"/><br/>
-    <button type="submit">Schedule</button>
-</form>
+        <div>
+            <label for="doctorSelect" class="block text-gray-700 text-sm font-medium mb-1">Doctor:</label>
+            <select id="doctorSelect" th:field="*{doctor.id}"
+                    class="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                <option value="">-- Select Doctor --</option>
+                <option th:each="d : ${doctors}" th:value="${d.id}" th:text="${d.name}"></option>
+            </select>
+        </div>
 
-<h3>Appointments List</h3>
-<ul>
-    <li th:each="a : ${appointments}" th:text="${a.patient.name} + ' with ' + ${a.doctor.name} + ' on ' + ${a.date} + ' at ' + ${a.time}"/>
-</ul>
-<a th:href="@{/}">Back</a>
+        <div>
+            <label for="appointmentDate" class="block text-gray-700 text-sm font-medium mb-1">Date:</label>
+            <input type="text" id="appointmentDate" th:field="*{date}" placeholder="YYYY-MM-DD"
+                   class="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" />
+        </div>
+
+        <div>
+            <label for="appointmentTime" class="block text-gray-700 text-sm font-medium mb-1">Time:</label>
+            <input type="text" id="appointmentTime" th:field="*{time}" placeholder="HH:MM"
+                   class="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" />
+        </div>
+
+        <button type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
+            Schedule Appointment
+        </button>
+    </form>
+
+    <h3 class="text-2xl font-bold text-blue-700 mt-8 mb-4">Appointments List</h3>
+    <div class="bg-blue-50 p-4 rounded-md shadow-inner">
+        <ul class="space-y-2">
+            <li th:each="a : ${appointments}" class="bg-blue-100 p-3 rounded-md shadow-sm">
+                <span class="font-medium" th:text="${a.patient.name}"></span> with
+                <span class="font-medium" th:text="${a.doctor.name}"></span> on
+                <span th:text="${a.date}"></span> at
+                <span th:text="${a.time}"></span>
+            </li>
+            <li th:if="${#lists.isEmpty(appointments)}" class="text-center text-gray-500 italic">
+                No appointments scheduled yet.
+            </li>
+        </ul>
+    </div>
+
+    <a th:href="@{/}"
+       class="mt-8 text-blue-600 hover:text-blue-800 font-medium text-center block transition duration-300 ease-in-out">
+        Back to Home
+    </a>
+</div>
 </body>
+
 </html>
